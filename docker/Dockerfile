@@ -1,4 +1,4 @@
-FROM tomcat:8.0
+FROM servergurus/ubuntu-jdk8
 MAINTAINER Mukesh Thakor
 
 # setup WildFly 
@@ -11,7 +11,7 @@ RUN java -version
 
 
 # Expose the ports we're interested in
-EXPOSE 8082 9990 9090
+EXPOSE 8080 9990 9090
 
 # Set the default command to run on boot
 # This will boot WildFly in the standalone mode and bind to all interface
