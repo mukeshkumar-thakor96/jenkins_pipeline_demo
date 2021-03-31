@@ -1,18 +1,11 @@
-FROM servergurus/ubuntu-jdk8
+FROM tomcat:8.0-alpine
 MAINTAINER Mukesh Thakor
 
-# setup WildFly 
-COPY wildfly-8.2.0.Final /opt/wildfly
-
-# install example app on wildfy
-COPY wildfly-spring-boot-sample-1.0.0.war /opt/wildfly/standalone/deployments/
-
-RUN java -version
-
+COPY wildfly-spring-boot-sample-1.0.0.war /usr/local/tomcat/webapps/
 
 # Expose the ports we're interested in
-EXPOSE 8081 9990 9090
+EXPOSE 8081
 
 # Set the default command to run on boot
 # This will boot WildFly in the standalone mode and bind to all interface
-CMD ["/opt/wildfly/bin/standalone.bat", "-c", "standalone-full.xml", "-b", "0.0.0.0"]
+CMD [“catalina.sh”, “run”]
